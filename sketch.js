@@ -1,3 +1,45 @@
+//examples of difrent types of data in javascript.
+
+//string
+var string = "Hello";
+console.log(string);
+//number
+var num = 32453;
+console.log(num);
+//boolean
+var bool = true;
+console.log(bool);
+//undifined
+var object;
+console.log(object);
+//reasigning the same undifined object to null
+//null
+object = null;
+console.log(object);
+//array holding same data type
+var array1 = ["HEELOOOO", "Ishanth", "YES", "HALLO"]
+console.log(array1);
+//array holding diffrent data type
+var array2 = [true, false, 2355453, 8943554789453879, "HORSE"]
+console.log(array2);
+//array storing a list of arrays
+var array3 = [[1,2], [2,3] , [3,4,5], [true, "YSHAJS", 1, 4, 4356]]
+var trajectory1 = [[1,2], [3,4], [5,6], [7,8]]
+console.log(trajectory1[0][1])
+console.log(array3);
+//accses the first element of array 3
+console.log(array3[0])
+console.log(array1[2])
+console.log(array2[4])
+console.log(array3[3][4])
+
+array3.push("HI")
+console.log(array3);
+array2.pop();
+console.log(array2)
+//taking length of a array
+console.log(array2.length)
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,7 +49,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
-
+var gameState = "OnSling";
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,16 +111,19 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if (gameState!=="Launched") {
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "Launched";
 }
 
-function keyPressed(){
-    if(keyCode === 32){
-        slingshot.attach(bird.body);
-    }
-}
+//function keyPressed(){
+    //if(keyCode === 32){
+      //  slingshot.attach(bird.body);
+   //}
+//}
